@@ -132,6 +132,10 @@
         text-align: left;
       }
 
+      .hidden {
+        display: none;
+      }
+
     </style>
   </head>
   <body>
@@ -140,13 +144,13 @@
         <div class="label">
           Course:
         </div>
-        <div class="option active content" data-course="JavaScript and Virtual Reality">
+        <div class="option active content" data-type="course" data-course="JavaScript and Virtual Reality">
           JavaScript and Virtual Reality
         </div>
-        <div class="option active content" data-course="Web Development with Ruby">
+        <div class="option active content" data-type="course" data-course="Web Development with Ruby">
           Web Development with Ruby
         </div>
-        <div class="option active content" data-course="iOS Development with Swift">
+        <div class="option active content" data-type="course" data-course="iOS Development with Swift">
           iOS Development with Swift
         </div>
       </div>
@@ -154,19 +158,25 @@
         <div class="label">
           Location:
         </div>
-        <div class="option active location" data-location="">
+        <div class="option active location" data-type="location" data-location="Upper West Side">
           Upper West Side
         </div>
-        <div class="option active location" data-location="">
+        <div class="option active location" data-type="location" data-location="Upper East Side">
           Upper East Side
         </div>
-        <div class="option active location" data-location="">
+        <div class="option active location" data-type="location" data-location="Financial District">
           Financial District
         </div>
-        <div class="option active location" data-location="">
+        <div class="option active location" data-type="location" data-location="Brooklyn">
+          Brooklyn
+        </div>
+        <div class="option active location" data-type="location" data-location="Queens">
+          Queens
+        </div>
+        <div class="option active location" data-type="location" data-location="Connecticut">
           Connecticut
         </div>
-        <div class="option active location" data-location="">
+        <div class="option active location" data-type="location" data-location="New Jersey">
           New Jersey
         </div>
       </div>
@@ -174,36 +184,42 @@
         <div class="label" id="datelabel">
           Dates:
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="1">
           June 18 - 29
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="2">
           June 25 - July 6
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="3">
           July 9 - 20
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="4">
           July 16 - 27
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="5">
           July 23 - August 3
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="6">
           July 30 - August 10
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="7">
           August 6 - August 17
         </div>
-        <div class="option active date" data-session="1">
+        <div class="option active date" data-type="session" data-session="8">
           August 13 - 24
         </div>
       </div>
     </div>
     <script type="text/javascript">
       const wrapper = document.querySelector('#wrapper')
-
+      var preferences = {
+        'location': [],
+        'session': [],
+        'course': []
+      }
       var courses = []
+      var goodcourses = []
+
       fetch("https://raw.githubusercontent.com/jolson615/JSCalendar/master/schedule.json")
         .then(r => r.json())
         .then(data => {
@@ -219,7 +235,7 @@
 
       function addRow(course) {
         wrapper.innerHTML += `
-          <div class='row ${course["Class Code"]}'>
+          <div class='row courserow ${course["Class Code"]}' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
             <div class='item'>
               <div>${course["Location"]}</div>
               <div class='subitem'>${course["Area"]}</div>
@@ -251,6 +267,40 @@
           e.target.classList.toggle("active")
         }
       })
+
+      function remakeList() {
+        const rows = document.querySelectorAll(".courserow")
+        updatePreferences()
+        rows.forEach(row => {
+          console.log(row)
+          console.log(preferences.location)
+          console.log(row.dataset.location)
+          console.log(preferences.location.includes(row.dataset.location))
+          // if (preferences.location.includes[row.dataset.location]) {
+          //   row.classList.remove("hidden")
+          // } else {
+          //   row.classList.add("hidden")
+          // }
+        })
+      }
+
+      function updatePreferences() {
+        preferences = {
+          'location': [],
+          'session': [],
+          'course': []
+        }
+        const options = document.querySelectorAll(".option")
+        console.log(options)
+        options.forEach(chosenOption => {
+          if (chosenOption.classList.contains("active")) {
+            console.log(chosenOption.dataset)
+            preferences[chosenOption.dataset.type].push(chosenOption.dataset[chosenOption.dataset.type])
+          }
+        })
+        console.log(preferences)
+      }
+
 
 
 
