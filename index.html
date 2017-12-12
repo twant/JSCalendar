@@ -32,51 +32,227 @@
 
       /* Black background color */
       body {
-        background-color: black;
+        background-color: #CED0CF;
       }
 
       /* put everything inside a wrapper so formatting is easier */
       #wrapper {
         /*width: 800px;
         max-width: 90%;*/
-        margin: auto;
-        background-color: rgba(255, 255, 255, 0.2);
-        margin-top: 0;
+        margin: 0;
+        background-color: #CED0CF;
         min-height: 100vh;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
       }
 
       .row {
-        padding-top: 25px;
+        font-family: "Proxima Nova Soft", Helvetica, sans-serif;
+        margin: 12px;
+        flex: 1 1 100%;
         display: flex;
-        width: 100%;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 1.2rem;
       }
 
+
       .item {
+        flex: 1 1 auto;
+        color: white;
+        font-size: 1.8rem;
+        text-shadow: 2px 2px rgba(0,0,0,0.2);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .item > * {
         flex: 1;
       }
 
-      .ruby {
-        background-color: rgba(242,  3, 31,1);
+      .subitem {
+        font-size: 1.2rem;
+      }
+
+      a {
+        flex: 1;
+        color: white;
+        font-size: 1rem;
+        text-shadow: none;
+      }
+
+      /*.ruby {
+        background-color: rgba(188,  0, 22,0.8);
       }
 
       .javascript {
-        background-color: rgba( 75, 18,172,1);
+        background-color: rgba( 57, 12,134,0.8) ;
       }
 
       .swift {
-        background: rgba(253,223,  3,1);
+        background-color: rgba(196,173,  0, 0.8);
+      }*/
+
+      .ruby, .swift, .javascript {
+        background-color: #02a086;
       }
+
+      div.active {
+        color: #02a086;
+        text-shadow: 0 0 10px white;
+      }
+
+      .option {
+        color: #5f6161;
+        text-shadow: none;
+        transition: 0.2s;
+        flex: 1 1 auto;
+        margin: 0px 10px;
+        /*border: 1px solid red;*/
+      }
+
+      .label {
+        flex: 0 0 0;
+        margin: 0px 10px;
+      }
+
+      .option.date {
+        flex: 0 1 180px;
+        min-width: 22%;
+      }
+
+      .label {
+        flex: 0 1 180px;
+        min-width: 100%;
+        text-align: left;
+      }
+
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQX4orI3JFm-ZqTCRR5AxIU5SyS3yx8R1GF-di_oK0A5FdGK8l62lm72m3PhSEDWkac-OOiq0KD_kGA/pubhtml?widget=true&amp;headers=false"></iframe>
+      <div class="row">
+        <div class="label">
+          Course:
+        </div>
+        <div class="option active content" data-course="JavaScript and Virtual Reality">
+          JavaScript and Virtual Reality
+        </div>
+        <div class="option active content" data-course="Web Development with Ruby">
+          Web Development with Ruby
+        </div>
+        <div class="option active content" data-course="iOS Development with Swift">
+          iOS Development with Swift
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          Location:
+        </div>
+        <div class="option active location" data-location="">
+          Upper West Side
+        </div>
+        <div class="option active location" data-location="">
+          Upper East Side
+        </div>
+        <div class="option active location" data-location="">
+          Financial District
+        </div>
+        <div class="option active location" data-location="">
+          Connecticut
+        </div>
+        <div class="option active location" data-location="">
+          New Jersey
+        </div>
+      </div>
+      <div class="row">
+        <div class="label" id="datelabel">
+          Dates:
+        </div>
+        <div class="option active date" data-session="1">
+          June 18 - 29
+        </div>
+        <div class="option active date" data-session="1">
+          June 25 - July 6
+        </div>
+        <div class="option active date" data-session="1">
+          July 9 - 20
+        </div>
+        <div class="option active date" data-session="1">
+          July 16 - 27
+        </div>
+        <div class="option active date" data-session="1">
+          July 23 - August 3
+        </div>
+        <div class="option active date" data-session="1">
+          July 30 - August 10
+        </div>
+        <div class="option active date" data-session="1">
+          August 6 - August 17
+        </div>
+        <div class="option active date" data-session="1">
+          August 13 - 24
+        </div>
+      </div>
     </div>
     <script type="text/javascript">
-      
+      const wrapper = document.querySelector('#wrapper')
+
+      var courses = []
+      fetch("https://raw.githubusercontent.com/jolson615/JSCalendar/master/schedule.json")
+        .then(r => r.json())
+        .then(data => {
+          populatePage(data)
+          courses = data
+        }).catch(e => console.log("Error"))
+
+      function populatePage(courses) {
+        courses.forEach(course => {
+          addRow(course)
+        })
+      }
+
+      function addRow(course) {
+        wrapper.innerHTML += `
+          <div class='row ${course["Class Code"]}'>
+            <div class='item'>
+              <div>${course["Location"]}</div>
+              <div class='subitem'>${course["Area"]}</div>
+            </div>
+            <div class='item'>${course["Class"]}</div>
+            <div class='item'>
+              <div class='subitem'>Begins on ${course["Start Date"]}</div>
+              <div class='subitem'>Ends on ${course["End Date"]}</div>
+            </div>
+            <div class='item'><a class="subitem" href='${course["Link"]}'><div>Click here to Register</div></a></div>
+          </div>
+        `
+      }
+
+      // const options = document.querySelectorAll(".option")
+      //
+      //
+      // console.log(options)
+      //
+      // options.forEach(option => {
+      //   console.log(option.classList)
+      //   option.addEventListener('click', e=>{
+      //     console.log("Clicked!")
+      //   })
+      // })
+
+      window.addEventListener('click', e => {
+        if (e.target.classList.contains("option")) {
+          e.target.classList.toggle("active")
+        }
+      })
+
+
 
     </script>
   </body>
