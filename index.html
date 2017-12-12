@@ -41,7 +41,6 @@
         max-width: 90%;*/
         margin: 0;
         background-color: #CED0CF;
-        min-height: 100vh;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -265,6 +264,7 @@
       window.addEventListener('click', e => {
         if (e.target.classList.contains("option")) {
           e.target.classList.toggle("active")
+          remakeList()
         }
       })
 
@@ -276,11 +276,11 @@
           console.log(preferences.location)
           console.log(row.dataset.location)
           console.log(preferences.location.includes(row.dataset.location))
-          // if (preferences.location.includes[row.dataset.location]) {
-          //   row.classList.remove("hidden")
-          // } else {
-          //   row.classList.add("hidden")
-          // }
+          if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session)) {
+            row.classList.remove("hidden")
+          } else {
+            row.classList.add("hidden")
+          }
         })
       }
 
