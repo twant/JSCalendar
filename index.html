@@ -32,7 +32,7 @@
 
       /* Black background color */
       body {
-        background-color: #CED0CF;
+        background-color: #eee;
       }
 
       /* put everything inside a wrapper so formatting is easier */
@@ -40,7 +40,7 @@
         /*width: 800px;
         max-width: 90%;*/
         margin: 0;
-        background-color: #CED0CF;
+        background-color: #eee;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -83,9 +83,10 @@
         color: white;
         font-size: 1rem;
         text-shadow: none;
+        text-decoration: none;
       }
 
-      .ruby {
+      /*.ruby {
         background-color: rgba(188,  0, 22,0.8);
       }
 
@@ -95,20 +96,17 @@
 
       .swift {
         background-color: rgba(196,173,  0, 0.8);
-      }
-
-      /*.ruby, .swift, .javascript {
-        background-color: #02a086;
       }*/
+
+      .ruby, .swift, .javascript {
+        background-color: #02a086;
+      }
 
       div.active {
         color: #02a086;
-        text-shadow: 0 0 10px white;
       }
 
       .option {
-        color: #5f6161;
-        text-shadow: none;
         transition: 0.2s;
         flex: 1 1 auto;
         margin: 0px 10px;
@@ -130,6 +128,12 @@
         min-width: 100%;
         text-align: left;
       }
+
+      .strikethrough {
+        color: #5f6161;
+        text-decoration: line-through;
+      }
+
 
       .hidden {
         display: none;
@@ -244,7 +248,7 @@
               <div class='subitem'>Begins on ${course["Start Date"]}</div>
               <div class='subitem'>Ends on ${course["End Date"]}</div>
             </div>
-            <div class='item'><a class="subitem" href='${course["Link"]}'><div>Click here to Register</div></a></div>
+            <div class='item'><a class="subitem" href='${course["Link"]}' target=”_blank”><div>Click here to Register</div></a></div>
           </div>
         `
       }
@@ -264,6 +268,7 @@
       window.addEventListener('click', e => {
         if (e.target.classList.contains("option")) {
           e.target.classList.toggle("active")
+          e.target.classList.toggle("strikethrough")
           remakeList()
         }
       })
