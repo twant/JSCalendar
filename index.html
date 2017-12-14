@@ -139,78 +139,120 @@
         display: none;
       }
 
+      #courseMenu {
+        flex: 1 0 280px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #dateMenu, #locationMenu{
+        flex: 2 0 400px;
+      }
+
+      .menuSubRow {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: right;
+      }
+
+      #locationMenu > .menuSubRow > * {
+        flex: 1 0 180px;
+
+      }
+
+      #dateMenu > .menuSubRow > * {
+        flex: 1 0 190px;
+      }
+
+      summary.label {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
     </style>
   </head>
   <body>
     <div id="wrapper">
+      <!-- Row for menus -->
       <div class="row">
-        <div class="label">
-          Course:
-        </div>
-        <div class="option active content" data-type="course" data-course="JavaScript and Virtual Reality">
-          JavaScript and Virtual Reality
-        </div>
-        <div class="option active content" data-type="course" data-course="Web Development with Ruby">
-          Web Development with Ruby
-        </div>
-        <div class="option active content" data-type="course" data-course="iOS Development with Swift">
-          iOS Development with Swift
-        </div>
-      </div>
-      <div class="row">
-        <div class="label">
-          Location:
-        </div>
-        <div class="option active location" data-type="location" data-location="Upper West Side">
-          Upper West Side
-        </div>
-        <div class="option active location" data-type="location" data-location="Upper East Side">
-          Upper East Side
-        </div>
-        <div class="option active location" data-type="location" data-location="Financial District">
-          Financial District
-        </div>
-        <div class="option active location" data-type="location" data-location="Brooklyn">
-          Brooklyn
-        </div>
-        <div class="option active location" data-type="location" data-location="Queens">
-          Queens
-        </div>
-        <div class="option active location" data-type="location" data-location="Connecticut">
-          Connecticut
-        </div>
-        <div class="option active location" data-type="location" data-location="New Jersey">
-          New Jersey
-        </div>
-      </div>
-      <div class="row">
-        <div class="label" id="datelabel">
-          Dates:
-        </div>
-        <div class="option active date" data-type="session" data-session="1">
-          June 18 - 29
-        </div>
-        <div class="option active date" data-type="session" data-session="2">
-          June 25 - July 6
-        </div>
-        <div class="option active date" data-type="session" data-session="3">
-          July 9 - 20
-        </div>
-        <div class="option active date" data-type="session" data-session="4">
-          July 16 - 27
-        </div>
-        <div class="option active date" data-type="session" data-session="5">
-          July 23 - August 3
-        </div>
-        <div class="option active date" data-type="session" data-session="6">
-          July 30 - August 10
-        </div>
-        <div class="option active date" data-type="session" data-session="7">
-          August 6 - August 17
-        </div>
-        <div class="option active date" data-type="session" data-session="8">
-          August 13 - 24
-        </div>
+        <!-- Menu for courses  -->
+        <details id="courseMenu">
+          <summary class="label classlabel">
+            Courses
+          </summary>
+          <div class="menuSubRow">
+            <div class="option active content" data-type="course" data-course="JavaScript and Virtual Reality">
+              JavaScript and Virtual Reality
+            </div>
+            <div class="option active content" data-type="course" data-course="Web Development with Ruby">
+              Web Development with Ruby
+            </div>
+            <div class="option active content" data-type="course" data-course="iOS Development with Swift">
+              iOS Development with Swift
+            </div>
+          </div>
+        </details>
+        <!-- Menu for locations -->
+        <details id="locationMenu">
+          <summary class="label">
+            Locations
+          </summary>
+          <div class="menuSubRow">
+            <div class="option active location" data-type="location" data-location="Upper West Side">
+              Upper West Side
+            </div>
+            <div class="option active location" data-type="location" data-location="Upper East Side">
+              Upper East Side
+            </div>
+            <div class="option active location" data-type="location" data-location="Financial District">
+              Financial District
+            </div>
+            <div class="option active location" data-type="location" data-location="Brooklyn">
+              Brooklyn
+            </div>
+            <div class="option active location" data-type="location" data-location="Queens">
+              Queens
+            </div>
+            <div class="option active location" data-type="location" data-location="Connecticut">
+              Connecticut
+            </div>
+            <div class="option active location" data-type="location" data-location="New Jersey">
+              New Jersey
+            </div>
+          </div>
+        </details>
+        <!-- Menu for Dates -->
+        <details id="dateMenu">
+          <summary class="label">
+            Session Dates
+          </summary>
+          <div class="menuSubRow">
+            <div class="option active date" data-type="session" data-session="1">
+              June 18 - 29
+            </div>
+            <div class="option active date" data-type="session" data-session="2">
+              June 25 - July 6
+            </div>
+            <div class="option active date" data-type="session" data-session="3">
+              July 9 - 20
+            </div>
+            <div class="option active date" data-type="session" data-session="4">
+              July 16 - 27
+            </div>
+            <div class="option active date" data-type="session" data-session="5">
+              July 23 - August 3
+            </div>
+            <div class="option active date" data-type="session" data-session="6">
+              July 30 - August 10
+            </div>
+            <div class="option active date" data-type="session" data-session="7">
+              August 6 - August 17
+            </div>
+            <div class="option active date" data-type="session" data-session="8">
+              August 13 - 24
+            </div>
+          </div>
+        </details>
       </div>
     </div>
     <script type="text/javascript">
