@@ -140,13 +140,13 @@
       }
 
       #courseMenu {
-        flex: 1 0 280px;
+        flex: 1 0 250px;
         display: flex;
         flex-wrap: wrap;
       }
 
       #dateMenu, #locationMenu{
-        flex: 2 0 400px;
+        flex: 2 0 300px;
       }
 
       .menuSubRow {
@@ -156,7 +156,7 @@
       }
 
       #locationMenu > .menuSubRow > * {
-        flex: 1 0 180px;
+        flex: 1 0 150px;
 
       }
 
@@ -169,12 +169,24 @@
         margin-bottom: 10px;
       }
 
+      @media all and (max-width:1000px) {
+        #courseMenu {
+          flex: 1 1 1000px;
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        #dateMenu, #locationMenu{
+          flex: 2 1 1000px;
+        }
+      }
+
     </style>
   </head>
   <body>
     <div id="wrapper">
       <!-- Row for menus -->
-      <div class="row">
+      <div class="row" id="mainMenuRow">
         <!-- Menu for courses  -->
         <details id="courseMenu">
           <summary class="label classlabel">
