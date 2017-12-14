@@ -53,17 +53,21 @@
         flex: 1 1 100%;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         text-align: center;
         border-radius: 10px;
-        font-size: 1.2rem;
+        font-size: 1rem;
+      }
+
+      #mainMenuRow {
+        justify-content: space-between;
       }
 
 
       .item {
         flex: 1 1 auto;
         color: white;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         text-shadow: 2px 2px rgba(0,0,0,0.2);
         padding: 10px;
         display: flex;
@@ -78,12 +82,29 @@
         font-size: 1.2rem;
       }
 
+      .item.link {
+        min-width: 120px;
+        max-width: 120px;
+      }
+
       a {
-        flex: 1;
-        color: white;
-        font-size: 1rem;
-        text-shadow: none;
+        display: flex;
         text-decoration: none;
+        flex-direction: column;
+      }
+
+      a > * {
+        flex: 1 1 0;
+      }
+
+      a > .linkButton {
+        font-size: 1.2rem;
+        color: #2D2F2E;
+        background-color: #FFD540;
+        text-shadow: none;
+        text-align: center;
+        border-radius: 4px;
+        padding: 8px;
       }
 
       /*.ruby {
@@ -302,7 +323,11 @@
               <div class='subitem'>Begins on ${course["Start Date"]}</div>
               <div class='subitem'>Ends on ${course["End Date"]}</div>
             </div>
-            <div class='item'><a class="subitem" href='${course["Link"]}' target=”_blank”><div>Click here to Register</div></a></div>
+            <div class='item link'><a class="subitem" href='${course["Link"]}' target=”_blank”>
+              <div></div>
+              <div class='linkButton'>Register</div>
+              <div></div>
+            </a></div>
           </div>
         `
       }
