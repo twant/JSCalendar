@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Upperline JS Calendar</title>
+    <style>
+      /*RUBY COLORS*/
+      .rgba-secondary-2-0 { color: rgba(242,  3, 31,1) }	/* Main Secondary color (2) */
+      .rgba-secondary-2-1 { color: rgba(247, 98,116,1) }
+      .rgba-secondary-2-2 { color: rgba(245, 57, 79,1) }
+      .rgba-secondary-2-3 { color: rgba(188,  0, 22,1) }
+      .rgba-secondary-2-4 { color: rgba(148,  0, 17,1) }
+
+      /*JAVASCRIPT COLORS*/
+      .rgba-secondary-1-0 { color: rgba( 75, 18,172,1) }	/* Main Secondary color (1) */
+      .rgba-secondary-1-1 { color: rgba(127, 88,194,1) }
+      .rgba-secondary-1-2 { color: rgba( 99, 54,177,1) }
+      .rgba-secondary-1-3 { color: rgba( 57, 12,134,1) }
+      .rgba-secondary-1-4 { color: rgba( 43,  8,105,1) }
+
+      /*SWIFT COLORS*/
+      .rgba-secondary-2-0 { color: rgba(253,223,  3,1) }	/* Main Secondary color (2) */
+      .rgba-secondary-2-1 { color: rgba(255,237,101,1) }
+      .rgba-secondary-2-2 { color: rgba(255,232, 59,1) }
+      .rgba-secondary-2-3 { color: rgba(196,173,  0,1) }
+      .rgba-secondary-2-4 { color: rgba(154,136,  0,1) }
+
+
+      /* The first several elements that are styled are really just for the purpose of having */
+      /* Border-box sizing, Default to a sans-serif font throughout */
+      *, *:before, *:after {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; } html { font-family: sans-serif; }
+
+      /* Black background color */
+      body {
+        background-color: #eee;
+      }
+
+      /* put everything inside a wrapper so formatting is easier */
+      #wrapper {
+        /*width: 800px;
+        max-width: 90%;*/
+        margin: 0;
+        background-color: #eee;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+
+      .row {
+        font-family: "Proxima Nova Soft", Helvetica, sans-serif;
+        margin: 10px;
+        flex: 1 1 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 1rem;
+        max-height: 90px;
+        padding: 8px
+      }
+
+      #mainMenuRow {
+        justify-content: space-between;
+      }
+
+
+      .item {
+        flex: 1 1 auto;
+        color: white;
+        font-size: 1.6rem;
+        text-shadow: 2px 2px rgba(0,0,0,0.2);
+        padding: 6px 12px;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+      }
+
+      .item > * {
+        flex: 0;
+      }
+
+      .subitem {
+        font-size: 1.2rem;
+        flex: 0;
+      }
+
+      a {
+        display: flex;
+        text-decoration: none;
+        flex-direction: column;
+      }
+
+      a > * {
+        flex: 1 1 0;
+      }
+
+      a > .linkButton {
+        font-size: 1.2rem;
+        color: #2D2F2E;
+        background-color: #FFD540;
+        text-shadow: none;
+        text-align: center;
+        border-radius: 4px;
+        padding: 8px;
+        width: 160px;
+        margin: auto;
+      }
+
+      /*.ruby {
+        background-color: rgba(188,  0, 22,0.8);
+      }
+
+      .javascript {
+        background-color: rgba( 57, 12,134,0.8) ;
+      }
+
+      .swift {
+        background-color: rgba(196,173,  0, 0.8);
+      }*/
+
+      .ruby, .swift, .javascript {
+        background-color: #02a086;
+      }
+
+      div.active {
+        color: #02a086;
+      }
+
+      .option {
+        transition: 0.2s;
+        flex: 1 1 auto;
+        margin: 0px 10px;
+        /*border: 1px solid red;*/
+      }
+
+      .option.date {
+        flex: 0 1 180px;
+        min-width: 22%;
+      }
+
+      .label {
+        flex: 0 1 180px;
+        min-width: 100%;
+        text-align: left;
+      }
+
+      .strikethrough {
+        color: #5f6161;
+        text-decoration: line-through;
+      }
+
+
+      .hidden {
+        display: none;
+      }
+
+      #courseMenu {
+        flex: 1 0 250px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #dateMenu, #locationMenu{
+        flex: 2 0 300px;
+      }
+
+      .menuSubRow {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: right;
+      }
+
+      #locationMenu > .menuSubRow > * {
+        flex: 1 0 150px;
+
+      }
+
+      #dateMenu > .menuSubRow > * {
+        flex: 1 0 190px;
+      }
+
+      summary.label {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .location {
+        flex: 0 0 25%;
+      }
+
+      .class {
+        flex: 0 0 40%;
+      }
+
+      .dates {
+        flex: 0 0 25%;
+      }
+
+
+      @media all and (max-width:920px) {
+        #courseMenu {
+          flex: 1 1 1000px;
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        #dateMenu, #locationMenu{
+          flex: 2 1 1000px;
+        }
+
+        .row {
+          max-height: none;
+        }
+
+        .location {
+          flex: 0 0 45%;
+          order: 1;
+        }
+
+        .class {
+          flex: 0 0 90%;
+          order: 3;
+        }
+
+        .dates {
+          flex: 0 0 45%;
+          order: 2;
+        }
+
+
+      }
+
+      @media all and (max-width:500px) {
+        .location {
+          flex: 0 0 90%;
+          order: 1;
+        }
+
+        .class {
+          flex: 0 0 90%;
+          order: 3;
+        }
+
+        .dates {
+          flex: 0 0 90%;
+          order: 2;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- Row for menus -->
+      <div class="row" id="mainMenuRow">
+        <!-- Menu for courses  -->
+        <details id="courseMenu">
+          <summary class="label classlabel">
+            Courses
+          </summary>
+          <div class="menuSubRow">
+            <div class="option active content" data-type="course" data-course="JavaScript and Virtual Reality">
+              JavaScript and Virtual Reality
+            </div>
+            <div class="option active content" data-type="course" data-course="Web Development with Ruby">
+              Web Development with Ruby
+            </div>
+            <div class="option active content" data-type="course" data-course="iOS Development with Swift">
+              iOS Development with Swift
+            </div>
+          </div>
+        </details>
+        <!-- Menu for locations -->
+        <details id="locationMenu">
+          <summary class="label">
+            Locations
+          </summary>
+          <div class="menuSubRow">
+            <div class="option active location" data-type="location" data-location="Upper West Side">
+              Upper West Side
+            </div>
+            <div class="option active location" data-type="location" data-location="Upper East Side">
+              Upper East Side
+            </div>
+            <div class="option active location" data-type="location" data-location="Financial District">
+              Financial District
+            </div>
+            <div class="option active location" data-type="location" data-location="Brooklyn">
+              Brooklyn
+            </div>
+            <div class="option active location" data-type="location" data-location="Queens">
+              Queens
+            </div>
+            <div class="option active location" data-type="location" data-location="Connecticut">
+              Connecticut
+            </div>
+            <div class="option active location" data-type="location" data-location="New Jersey">
+              New Jersey
+            </div>
+          </div>
+        </details>
+        <!-- Menu for Dates -->
+        <details id="dateMenu">
+          <summary class="label">
+            Session Dates
+          </summary>
+          <div class="menuSubRow">
+            <div class="option active date" data-type="session" data-session="1">
+              June 18 - 29
+            </div>
+            <div class="option active date" data-type="session" data-session="2">
+              June 25 - July 6
+            </div>
+            <div class="option active date" data-type="session" data-session="3">
+              July 9 - 20
+            </div>
+            <div class="option active date" data-type="session" data-session="4">
+              July 16 - 27
+            </div>
+            <div class="option active date" data-type="session" data-session="5">
+              July 23 - August 3
+            </div>
+            <div class="option active date" data-type="session" data-session="6">
+              July 30 - August 10
+            </div>
+            <div class="option active date" data-type="session" data-session="7">
+              August 6 - August 17
+            </div>
+            <div class="option active date" data-type="session" data-session="8">
+              August 13 - 24
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+    <script type="text/javascript">
+      const wrapper = document.querySelector('#wrapper')
+      var preferences = {
+        'location': [],
+        'session': [],
+        'course': []
+      }
+      var courses = []
+      var goodcourses = []
+
+      // fetch("https://raw.githubusercontent.com/jolson615/JSCalendar/master/schedule.json")
+      //   .then(r => r.json())
+      //   .then(data => {
+      //     populatePage(data)
+      //     courses = data
+      //   }).catch(e => console.log("Error"))
+
+      populatePage([
+       {
+         "Location": "Dwight",
+         "Area": "Upper West Side",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-06-18",
+         "End Date": "2018-06-29",
+         "Session": 1,
+         "Link": "https://upperlinecodedwight.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Dwight",
+         "Area": "Upper West Side",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-07-09",
+         "End Date": "2018-07-20",
+         "Session": 3,
+         "Link": "https://upperlinecodedwight.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Dwight",
+         "Area": "Upper West Side",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-07-09",
+         "End Date": "2018-07-20",
+         "Session": 3,
+         "Link": "https://upperlinecodedwight.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Dwight",
+         "Area": "Upper West Side",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-07-23",
+         "End Date": "2018-08-03",
+         "Session": 5,
+         "Link": "https://upperlinecodedwight.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Dwight",
+         "Area": "Upper West Side",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-07-23",
+         "End Date": "2018-08-03",
+         "Session": 5,
+         "Link": "https://upperlinecodedwight.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Dwight",
+         "Area": "Upper West Side",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-08-06",
+         "End Date": "2018-08-17",
+         "Session": 7,
+         "Link": "https://upperlinecodedwight.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Greenwich Academy",
+         "Area": "Connecticut",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-06-18",
+         "End Date": "2018-06-29",
+         "Session": 1,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 11,
+         "Max Age": 15,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "LMHQ",
+         "Area": "Financial District",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-06-18",
+         "End Date": "2018-06-29",
+         "Session": 1,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "LMHQ",
+         "Area": "Financial District",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-07-23",
+         "End Date": "2018-08-03",
+         "Session": 5,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "LMHQ",
+         "Area": "Financial District",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-08-06",
+         "End Date": "2018-08-17",
+         "Session": 7,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Made in NY Media Center",
+         "Area": "Brooklyn",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-06-18",
+         "End Date": "2018-06-29",
+         "Session": 1,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Made in NY Media Center",
+         "Area": "Brooklyn",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-07-16",
+         "End Date": "2018-07-27",
+         "Session": 4,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Made in NY Media Center",
+         "Area": "Brooklyn",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-08-13",
+         "End Date": "2018-08-24",
+         "Session": 8,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "BASIS Independent",
+         "Area": "Brooklyn",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-06-25",
+         "End Date": "2018-07-06",
+         "Session": 2,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "BASIS Independent",
+         "Area": "Brooklyn",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-07-09",
+         "End Date": "2018-07-20",
+         "Session": 3,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Greene-Hill School",
+         "Area": "Brooklyn",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-07-09",
+         "End Date": "2018-07-20",
+         "Session": 4,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "BASIS Independent",
+         "Area": "Brooklyn",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-07-23",
+         "End Date": "2018-08-03",
+         "Session": 5,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Greene-Hill School",
+         "Area": "Brooklyn",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-07-23",
+         "End Date": "2018-08-03",
+         "Session": 6,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "BASIS Independent",
+         "Area": "Brooklyn",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-08-06",
+         "End Date": "2018-08-17",
+         "Session": 7,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Precise Location TBD",
+         "Area": "Brooklyn",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-08-06",
+         "End Date": "2018-08-17",
+         "Session": 7,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Precise Location TBD",
+         "Area": "Queens",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "TBD",
+         "End Date": "TBD",
+         "Session": null,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Precise Location TBD",
+         "Area": "Queens",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "TBD",
+         "End Date": "TBD",
+         "Session": null,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Trevor",
+         "Area": "Upper East Side",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-07-16",
+         "End Date": "2018-07-27",
+         "Session": 4,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Trevor",
+         "Area": "Upper East Side",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-07-16",
+         "End Date": "2018-07-27",
+         "Session": 4,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Trevor",
+         "Area": "Upper East Side",
+         "Class": "iOS Development with Swift",
+         "Class Code": "swift",
+         "Start Date": "2018-07-30",
+         "End Date": "2018-08-10",
+         "Session": 6,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "Trevor",
+         "Area": "Upper East Side",
+         "Class": "Web Development with Ruby",
+         "Class Code": "ruby",
+         "Start Date": "2018-07-30",
+         "End Date": "2018-08-10",
+         "Session": 6,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       },
+       {
+         "Location": "WorkSocial",
+         "Area": "New Jersey",
+         "Class": "JavaScript and Virtual Reality",
+         "Class Code": "javascript",
+         "Start Date": "2018-08-06",
+         "End Date": "2018-08-17",
+         "Session": 7,
+         "Link": "https://upperlinecode.campbrainregistration.com",
+         "Min Age": 13,
+         "Max Age": 18,
+         "Current Available spots": 20,
+         "Last Updated": "2017-12-11"
+       }
+      ]
+)
+
+      function populatePage(courses) {
+        courses.forEach(course => {
+          addRow(course)
+        })
+      }
+
+      function addRow(course) {
+        wrapper.innerHTML += `
+          <div class='row courserow ${course["Class Code"]}' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
+            <div class='item location'>
+              <div>${course["Location"]}
+              <br>${course["Area"]}</div>
+            </div>
+            <div class='item class'>${course["Class"]}
+              <div class="link">
+                <a class="subitem" href='${course["Link"]}' target=”_blank”>
+                  <div class='linkButton'>Register</div>
+                </a>
+              </div>
+            </div>
+            <div class='item dates'>
+              <div class='subitem'>Begins on ${course["Start Date"]}<br>Ends on ${course["End Date"]}</div>
+            </div>
+          </div>
+        `
+      }
+
+      // const options = document.querySelectorAll(".option")
+      //
+      //
+      // console.log(options)
+      //
+      // options.forEach(option => {
+      //   console.log(option.classList)
+      //   option.addEventListener('click', e=>{
+      //     console.log("Clicked!")
+      //   })
+      // })
+
+      window.addEventListener('click', e => {
+        if (e.target.classList.contains("option")) {
+          e.target.classList.toggle("active")
+          e.target.classList.toggle("strikethrough")
+          remakeList()
+        }
+      })
+
+      function remakeList() {
+        const rows = document.querySelectorAll(".courserow")
+        updatePreferences()
+        rows.forEach(row => {
+          console.log(row)
+          console.log(preferences.location)
+          console.log(row.dataset.location)
+          console.log(preferences.location.includes(row.dataset.location))
+          if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session)) {
+            row.classList.remove("hidden")
+          } else {
+            row.classList.add("hidden")
+          }
+        })
+      }
+
+      function updatePreferences() {
+        preferences = {
+          'location': [],
+          'session': [],
+          'course': []
+        }
+        const options = document.querySelectorAll(".option")
+        console.log(options)
+        options.forEach(chosenOption => {
+          if (chosenOption.classList.contains("active")) {
+            console.log(chosenOption.dataset)
+            preferences[chosenOption.dataset.type].push(chosenOption.dataset[chosenOption.dataset.type])
+          }
+        })
+        console.log(preferences)
+      }
+
+
+
+
+    </script>
+  </body>
+</html>

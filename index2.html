@@ -25,6 +25,12 @@
       .rgba-secondary-2-3 { color: rgba(196,173,  0,1) }
       .rgba-secondary-2-4 { color: rgba(154,136,  0,1) }
 
+      .item.ruby {}
+
+      .item.javascript {}
+
+      .item.swift {}
+
 
       /* The first several elements that are styled are really just for the purpose of having */
       /* Border-box sizing, Default to a sans-serif font throughout */
@@ -57,10 +63,12 @@
         text-align: center;
         border-radius: 10px;
         font-size: 1rem;
+        background-color: #02a086;
       }
 
       #mainMenuRow {
         justify-content: space-between;
+        background-color: rgba(0,0,0,0);
       }
 
 
@@ -105,22 +113,6 @@
         text-align: center;
         border-radius: 4px;
         padding: 8px;
-      }
-
-      /*.ruby {
-        background-color: rgba(188,  0, 22,0.8);
-      }
-
-      .javascript {
-        background-color: rgba( 57, 12,134,0.8) ;
-      }
-
-      .swift {
-        background-color: rgba(196,173,  0, 0.8);
-      }*/
-
-      .ruby, .swift, .javascript {
-        background-color: #02a086;
       }
 
       div.active {
@@ -328,12 +320,12 @@
 
       function addRow(course) {
         wrapper.innerHTML += `
-          <div class='row courserow ${course["Class Code"]}' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
+          <div class='row courserow' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
             <div class='item'>
               <div>${course["Location"]}</div>
               <div class='subitem'>${course["Area"]}</div>
             </div>
-            <div class='item'>${course["Class"]}</div>
+            <div class='item ${course["Class Code"]}'>${course["Class"]}</div>
             <div class='item'>
               <div class='subitem'>Begins on ${course["Start Date"]}</div>
               <div class='subitem'>Ends on ${course["End Date"]}</div>
