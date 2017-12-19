@@ -10,3 +10,19 @@
 a {
   margin: 5px 3px;
 }
+
+#menuBar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+
+div.collapsible-body {
+  background-color: white;
+}
+
+.cardBody {
+  position: relative;
+  top: 340px;
+  z-index: 0;
+}
