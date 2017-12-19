@@ -29,9 +29,25 @@ div.collapsible-body {
 }
 
 h6.courseLocation {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-style: italic;
 }
 
 h6.dates {
-  
+
+}
+
+p.ugly {
+  font-family: "Oswald";
+  font-size: 1.3rem;
+  padding-bottom: 10px;
+}
+
+.card .card-image {
+  height: 30%;
+  overflow: hidden;
+}
+
+div.coursecard .card .card-content {
+  max-height: 55%;
 }

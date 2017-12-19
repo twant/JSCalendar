@@ -30,19 +30,21 @@ function addCard(course) {
   let endDate = new Date(course["End Date"])
   let endDateString = endDate.getMonth() + "/" + endDate.getDate()
   let description = getDescription(course["Class Code"])
+  let shortDescription = getShortDescription(course["Class Code"])
   if (course["Area"] == "Queens") {
     console.log("Queens not yet ready to run")
   } else {
     wrapper.innerHTML += `
         <div class="col s12 m6 l4 coursecard" data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
           <div class="card sticky-action medium teal darken-2">
-            <div class="card-image" style="height: 190px; overflow: hidden">
+            <div class="card-image" style="max-height: 30%; overflow: hidden">
               <img class="activator" src='${imagesrc}'>
               <span class="card-title" style="font-weight: 900; text-shadow: 2px 2px 2px #000">${course["Class"]}</span>
             </div>
-            <div class="card-content white-text">
-              <span class="card-title row">${course["Area"]}<i class="material-icons right activator">more_vert</i></span>
+            <div class="card-content white-text" style="max-height: 60%">
+              <span class="card-title row">${course["Area"]}<i class="material-icons right activator waves-effect waves-light">more_vert</i></span>
               <h6 class="courseLocation row">${course["Location"]}</h6>
+              <p class="ugly">${shortDescription}</p>
               <h6 class="courseDates row">${startDateString} - ${endDateString}</h6>
             </div>
             <div class="card-action">
@@ -77,5 +79,15 @@ function getDescription(courseName) {
     return("It takes months to get an app on the AppStore, but in these two weeks, students build at least 5 basic apps using Swift frameworks and try the apps on their own iPhones.")
   } else if (courseName == "javascript") {
     return("JavaScript brings the web to life: animate webpages, interact with other sites, and create art, games, and virtual realities. In this course, students will build at least two JavaScript-powered web apps.")
+  }
+}
+
+function getShortDescription(courseName) {
+  if (courseName == "ruby") {
+    return("Master full-stack programming with Ruby")
+  } else if (courseName == "swift") {
+    return("Build iPhone apps with Xcode and Swift")
+  } else if (courseName == "javascript") {
+    return("Engineering meets design with JavaScript")
   }
 }
