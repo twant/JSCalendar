@@ -45,7 +45,7 @@ function addCard(course) {
             </div>
             <div class="card-action">
               <a href="https://www.upperlinecode.com/classes" target="_blank">Learn More</a>
-              <a href='${course["Link"]}'>Register</a>
+              <a href='${course["Link"]}' target="_blank">Register</a>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">${course["Class"]}<i class="material-icons right">close</i></span>
