@@ -1,0 +1,12 @@
+.hidden {
+  display: none;
+}
+
+.strikethrough {
+  background-color: #777;
+  color: white;
+}
+
+a {
+  margin: 5px 3px;
+}
