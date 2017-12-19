@@ -13,6 +13,7 @@ a {
 
 #menuBar {
   position: fixed;
+  top: -8px;
   z-index: 1;
   width: 100%;
 }
@@ -25,4 +26,12 @@ div.collapsible-body {
   position: relative;
   top: 330px;
   z-index: 0;
+}
+
+h6.courseLocation {
+  font-size: 1.3rem;
+}
+
+h6.dates {
+  
 }

@@ -29,33 +29,35 @@ function addCard(course) {
   let startDateString = startDate.getMonth() + "/" + startDate.getDate()
   let endDate = new Date(course["End Date"])
   let endDateString = endDate.getMonth() + "/" + endDate.getDate()
-  console.log(startDate)
-  if (startDate) {
-    console.log("exists")
+  let description = getDescription(course["Class Code"])
+  if (course["Area"] == "Queens") {
+    console.log("Queens not yet ready to run")
   } else {
-    console.log("DNE")
-  }
-  wrapper.innerHTML += `
-      <div class="col s12 m6 l4 coursecard" data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
-        <div class="card teal darken-2">
-          <div class="card-image" style="height: 175px; overflow: hidden">
-            <img src='${imagesrc}'>
-            <span class="card-title" style="font-weight: 900; text-shadow: 2px 2px 2px #000">${course["Class"]}</span>
-          </div>
-          <div class="card-content white-text">
-            <span class="card-title">${course["Area"]}</span>
-            <p>${course["Location"]}
-            <br>${startDateString} - ${endDate.toLocaleDateString('en-US')}
-            <br>We should write a brief course description here, no?
-            </p>
-          </div>
-          <div class="card-action">
-            <a href="https://www.upperlinecode.com/classes">Learn More</a>
-            <a href='${course["Link"]}'>Register</a>
+    wrapper.innerHTML += `
+        <div class="col s12 m6 l4 coursecard" data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
+          <div class="card sticky-action medium teal darken-2">
+            <div class="card-image" style="height: 190px; overflow: hidden">
+              <img class="activator" src='${imagesrc}'>
+              <span class="card-title" style="font-weight: 900; text-shadow: 2px 2px 2px #000">${course["Class"]}</span>
+            </div>
+            <div class="card-content white-text">
+              <span class="card-title row">${course["Area"]}<i class="material-icons right activator">more_vert</i></span>
+              <h6 class="courseLocation row">${course["Location"]}</h6>
+              <h6 class="courseDates row">${startDateString} - ${endDateString}</h6>
+            </div>
+            <div class="card-action">
+              <a href="https://www.upperlinecode.com/classes">Learn More</a>
+              <a href='${course["Link"]}'>Register</a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">${course["Class"]}<i class="material-icons right">close</i></span>
+              <p class="">${description}</p>
+
+            </div>
           </div>
         </div>
-      </div>
-  `
+    `
+  }
 }
 
 function getImage(courseName) {
@@ -65,5 +67,15 @@ function getImage(courseName) {
     return("images/ios.png")
   } else if (courseName == "javascript") {
     return("images/javascript.png")
+  }
+}
+
+function getDescription(courseName) {
+  if (courseName == "ruby") {
+    return("Back-end languages like Ruby are used to write algorithms that power websites like Airbnb. By the end of this course, students will use core Ruby, HTML, and CSS to build a functional web app.")
+  } else if (courseName == "swift") {
+    return("It takes months to get an app on the AppStore, but in these two weeks, students build at least 5 basic apps using Swift frameworks and try the apps on their own iPhones.")
+  } else if (courseName == "javascript") {
+    return("JavaScript brings the web to life: animate webpages, interact with other sites, and create art, games, and virtual realities. In this course, students will build at least two JavaScript-powered web apps.")
   }
 }
