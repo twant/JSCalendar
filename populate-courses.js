@@ -25,10 +25,6 @@ function populatePage(courses) {
 
 function addCard(course) {
   let imagesrc = getImage(course["Class Code"])
-  let startDate = new Date(course["Start Date"])
-  let startDateString = startDate.getMonth() + "/" + startDate.getDate()
-  let endDate = new Date(course["End Date"])
-  let endDateString = endDate.getMonth() + "/" + endDate.getDate()
   let description = getDescription(course["Class Code"])
   let shortDescription = getShortDescription(course["Class Code"])
   if (course["Area"] == "Queens") {
@@ -45,10 +41,10 @@ function addCard(course) {
               <span class="card-title row">${course["Area"]}<i class="material-icons right activator waves-effect waves-light">more_vert</i></span>
               <h6 class="courseLocation row">${course["Location"]}</h6>
               <p class="ugly">${shortDescription}</p>
-              <h6 class="courseDates row">${startDateString} - ${endDateString}</h6>
+              <h6 class="courseDates row">${course["Start Date"]} - ${course["End Date"]}</h6>
             </div>
             <div class="card-action">
-              <a href="https://www.upperlinecode.com/classes">Learn More</a>
+              <a href="https://www.upperlinecode.com/classes" target="_blank">Learn More</a>
               <a href='${course["Link"]}'>Register</a>
             </div>
             <div class="card-reveal">
