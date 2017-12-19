@@ -1,5 +1,4 @@
 window.addEventListener('click', e => {
-  console.log(e.target)
   if (e.target.classList.contains("option")) {
     e.target.classList.toggle("active")
     e.target.classList.toggle("strikethrough")
@@ -30,6 +29,15 @@ window.addEventListener('click', e => {
   }
 })
 
+function resizeWrapper() {
+  const body = document.querySelector(".cardBody")
+  const menu = document.querySelector("#menuBar")
+  body.style.top = `${menu.offsetHeight}px`;
+}
+
+document.addEventListener("mousemove", e => {
+  resizeWrapper()
+})
 
 function remakeList() {
   const rows = document.querySelectorAll(".coursecard")
@@ -65,4 +73,6 @@ function updatePreferences() {
     }
   })
   // console.log(preferences)
+
+
 }

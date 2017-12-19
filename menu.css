@@ -29,6 +29,7 @@ div.collapsible-body {
   position: relative;
   top: 366px;
   z-index: 0;
+  transition: 0.2s;
 }
 
 h6.courseLocation {
