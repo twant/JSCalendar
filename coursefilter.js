@@ -8,9 +8,11 @@ window.addEventListener('click', e => {
     const options = {
       "location" : document.querySelectorAll(".option.location"),
       "date" : document.querySelectorAll(".option.date"),
-      "content" : document.querySelectorAll(".option.content")
+      "content" : document.querySelectorAll(".option.content"),
+      "age" : document.querySelectorAll(".option.age")
     }
     console.log(options)
+    console.log(e.target.classList)
     let type = e.target.classList[2]
     let toggle = e.target.classList[1]
     if (toggle == "deselectall") {
@@ -35,11 +37,12 @@ function remakeList() {
   updatePreferences()
   rows.forEach(row => {
     // console.log(row)
-    // console.log(preferences)
-    // console.log(row.dataset.location)
+    console.log(preferences.age)
+    console.log(row.dataset)
+    console.log(row.dataset.age)
     // console.log(preferences.location)
-    // console.log(preferences.location.includes(row.dataset.location))
-    if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session)) {
+    console.log(preferences.age.includes(row.dataset.age))
+    if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session) && preferences.age.includes(row.dataset.age)) {
       row.classList.remove("hidden")
     } else {
       row.classList.add("hidden")
@@ -51,7 +54,8 @@ function updatePreferences() {
   preferences = {
     'location': [],
     'session': [],
-    'course': []
+    'course': [],
+    'age': []
   }
   const options = document.querySelectorAll(".option")
   // console.log(options)

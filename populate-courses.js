@@ -35,7 +35,7 @@ function addCard(course) {
     console.log("Queens not yet ready to run")
   } else {
     wrapper.innerHTML += `
-        <div class="col s12 m6 l4 coursecard" data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}'>
+        <div class="col s12 m6 l4 coursecard" data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}' data-age='${course["Max Age"]}'>
           <div class="card sticky-action medium teal darken-2">
             <div class="card-image" style="max-height: 30%; overflow: hidden">
               <img class="activator" src='${imagesrc}'>
