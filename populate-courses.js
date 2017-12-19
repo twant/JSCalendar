@@ -41,7 +41,10 @@ function addCard(course) {
               <span class="card-title row">${course["Area"]}<i class="material-icons right activator waves-effect waves-light">more_vert</i></span>
               <h6 class="courseLocation row">${course["Location"]}</h6>
               <p class="ugly">${shortDescription}</p>
-              <h6 class="courseDates row">${course["Start Date"]} - ${course["End Date"]}</h6>
+              <br>
+              <div class="row">
+                <span class="courseDates">${course["Start Date"]} - ${course["End Date"]}</span><span class="right">Ages ${course["Min Age"]}-${course["Max Age"]}</span>
+              </div>
             </div>
             <div class="card-action">
               <a href="https://www.upperlinecode.com/classes" target="_blank">Learn More</a>
