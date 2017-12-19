@@ -3,8 +3,11 @@
 }
 
 .strikethrough {
-  background-color: #777;
-  color: white;
+  color: #777;
+}
+
+li .option.active {
+  color: #009688;
 }
 
 a {
@@ -43,11 +46,84 @@ p.ugly {
   padding-bottom: 10px;
 }
 
-.card .card-image {
-  height: 30%;
-  overflow: hidden;
+.option {
+    position: relative;
+    padding-left: 35px;
+    padding-right: 23px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-div.coursecard .card .card-content {
-  max-height: 55%;
+.option.active:before {
+    top: 0;
+    left: 1px;
+    width: 8px;
+    height: 13px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotateZ(37deg);
+    transform: rotateZ(37deg);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    z-index: 2;
+}
+
+.option:before, .option:after {
+    content: '';
+    left: 0;
+    position: absolute;
+    -webkit-transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+    transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+    z-index: 1;
+}
+
+.option.active:before {
+    top: -4px;
+    left: -5px;
+    width: 12px;
+    height: 22px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.option:before, .option.strikethrough:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    z-index: 0;
+    border: 2px solid #5a5a5a;
+    border-radius: 1px;
+    margin-top: 2px;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.option.active:after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #26a69a;
+    background-color: #26a69a;
+    border-radius: 2px;
+    z-index: 0;
 }
