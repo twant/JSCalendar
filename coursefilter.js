@@ -41,8 +41,10 @@ document.addEventListener("mousemove", e => {
 
 function remakeList() {
   const rows = document.querySelectorAll(".coursecard")
+  const whoopsText = document.querySelector('#whoops')
   // console.log(rows)
   updatePreferences()
+  var counter = 0
   rows.forEach(row => {
     // console.log(row)
     console.log(preferences.age)
@@ -52,10 +54,29 @@ function remakeList() {
     console.log(preferences.age.includes(row.dataset.age))
     if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session) && preferences.age.includes(row.dataset.age)) {
       row.classList.remove("hidden")
+      counter += 1
     } else {
       row.classList.add("hidden")
     }
   })
+  console.log(counter)
+  if (counter == 0) {
+    console.log("triggered")
+    whoopsText.classList.remove("hidden")
+  } else {
+    whoopsText.classList.add("hidden")
+  }
+}
+
+function resetAll() {
+  const whoopsText = document.querySelector('#whoops')
+  whoopsText.classList.add("hidden")
+  const options = document.querySelectorAll(".option")
+  options.forEach(option => {
+    option.classList.add("active")
+    option.classList.remove("strikethrough")
+  })
+  remakeList()
 }
 
 function updatePreferences() {
@@ -72,7 +93,5 @@ function updatePreferences() {
       preferences[chosenOption.dataset.type].push(chosenOption.dataset[chosenOption.dataset.type])
     }
   })
-  // console.log(preferences)
-
 
 }
