@@ -9,95 +9,10 @@
       <link rel="stylesheet" href="menu.css">
     </head>
     <body>
-        <!-- Old Menu -->
-        <!-- <div class="menuBar">
-          <div class="row">
-            Course Menu
-            <details class="col s12 m12 l4" id="courseMenu" open>
-              <summary class="row label">
-                Filter by course:
-              </summary>
-              <div class="row">
-                <a class="option btn active content" data-type="course" data-course="JavaScript and Virtual Reality">
-                  JavaScript and Virtual Reality
-                </a>
-                <a class="option btn active content" data-type="course" data-course="Web Development with Ruby">
-                  Web Development with Ruby
-                </a>
-                <a class="option btn active content" data-type="course" data-course="iOS Development with Swift">
-                  iOS Development with Swift
-                </a>
-                <a href="#" class="select selectall content btn-flat waves-effect waves-teal">Select all</a> <a href="#" class="select deselectall content btn-flat waves-effect waves-teal">Deselect all</a>
-              </div>
-            </details>
-            <details class="col s12 m12 l4" id="locationMenu">
-              <summary class="row label">
-                Filter by location:
-              </summary>
-              <div class="row">
-                <a class="option btn active location" data-type="location" data-location="Upper West Side">
-                  Upper West Side
-                </a>
-                <a class="option btn active location" data-type="location" data-location="Upper East Side">
-                  Upper East Side
-                </a>
-                <a class="option btn active location" data-type="location" data-location="Financial District">
-                  Financial District
-                </a>
-                <a class="option btn active location" data-type="location" data-location="Brooklyn">
-                  Brooklyn
-                </a>
-                <a class="option btn active location" data-type="location" data-location="Queens">
-                  Queens
-                </a>
-                <a class="option btn active location" data-type="location" data-location="Connecticut">
-                  Connecticut
-                </a>
-                <a class="option btn active location" data-type="location" data-location="New Jersey">
-                  New Jersey
-                </a>
-                <a href="#" class="select selectall location btn-flat waves-effect waves-teal">Select all</a> <a href="#" class="select deselectall location btn-flat waves-effect waves-teal">Deselect all</a>
-
-              </div>
-            </details>
-            <details class="col s12 m12 l4" id="dateMenu">
-              <summary class="row label">
-                Filter by session date:
-              </summary>
-              <div class="row">
-                <a class="option btn active date" data-type="session" data-session="1">
-                  June 18 - 29
-                </a>
-                <a class="option btn active date" data-type="session" data-session="2">
-                  June 25 - July 6
-                </a>
-                <a class="option btn active date" data-type="session" data-session="3">
-                  July 9 - 20
-                </a>
-                <a class="option btn active date" data-type="session" data-session="4">
-                  July 16 - 27
-                </a>
-                <a class="option btn active date" data-type="session" data-session="5">
-                  July 23 - August 3
-                </a>
-                <a class="option btn active date" data-type="session" data-session="6">
-                  July 30 - August 10
-                </a>
-                <a class="option btn active date" data-type="session" data-session="7">
-                  August 6 - August 17
-                </a>
-                <a class="option btn active date" data-type="session" data-session="8">
-                  August 13 - 24
-                </a>
-                <a href="#" class="select selectall location btn-flat waves-effect waves-teal">Select all</a> <a href="#" class="select deselectall content btn-flat waves-effect waves-teal">Deselect all</a>
-
-              </div>
-            </details>
-          </div>
-        </div> -->
         <!-- Materialize Menu -->
         <div class="row" id="menuBar">
           <ul class="collapsible" data-collapsible="accordion">
+            <!-- Course filters -->
             <li>
               <div class="collapsible-header active"><i class="material-icons">class</i>Filter by Course</div>
               <div class="collapsible-body">
@@ -113,6 +28,7 @@
                 <a href="#" class="select selectall content btn-flat waves-effect waves-teal">Select all</a> <a href="#" class="select deselectall content btn-flat waves-effect waves-teal">Deselect all</a>
               </div>
             </li>
+            <!-- Location filters -->
             <li>
               <div class="collapsible-header"><i class="material-icons">place</i>Filter by Location</div>
               <div class="collapsible-body">
@@ -141,6 +57,7 @@
 
               </div>
             </li>
+            <!-- Date filters -->
             <li>
               <div class="collapsible-header"><i class="material-icons">date_range</i>Filter by Date</div>
               <div class="collapsible-body">
@@ -168,9 +85,10 @@
                 <a class="option active date" data-type="session" data-session="8">
                   August 13 - 24
                 </a>
-                <a href="#" class="select selectall location btn-flat waves-effect waves-teal">Select all</a> <a href="#" class="select deselectall content btn-flat waves-effect waves-teal">Deselect all</a>
+                <a href="#" class="select selectall date btn-flat waves-effect waves-teal">Select all</a> <a href="#" class="select deselectall date btn-flat waves-effect waves-teal">Deselect all</a>
               </div>
             </li>
+            <!-- Age filters -->
             <li>
               <div class="collapsible-header"><i class="material-icons">child_care</i>Filter by Age</div>
               <div class="collapsible-body">
