@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="menu2.css">
+    </head>
+    <body>
+        <!-- Dropdown1 -->
+        <ul id="dropdown1" class="dropdown-content" style='width: 400px !important;'>
+          <a class="option active content" data-type="course" data-course="JavaScript and Virtual Reality">
+           JavaScript
+          </a>
+          <li class="divider"></li>
+          <a class="option active content" data-type="course" data-course="Web Development with Ruby">
+           Ruby
+          </a>
+          <li class="divider"></li>
+          <a class="option active content" data-type="course" data-course="iOS Development with Swift">
+            iOS w/ Swift
+          </a>
+          <li class="divider"></li>
+          <li><a href="#" class="select selectall content waves-effect waves-teal">Select all</a></li><li> <a href="#" class="select deselectall content waves-effect waves-teal">Deselect all</a></li>
+        </ul>
+        <!-- Dropdown2 -->
+        <ul id="dropdown2" class="dropdown-content">
+          <a class="option active location" data-type="location" data-location="Upper West Side">
+            Upper West Side
+          </a>
+          <li class="divider"></li>
+          <a class="option active location" data-type="location" data-location="Upper East Side">
+            Upper East Side
+          </a>
+          <li class="divider"></li>
+          <a class="option active location" data-type="location" data-location="Financial District">
+            Financial District
+          </a>
+          <li class="divider"></li>
+          <a class="option active location" data-type="location" data-location="Brooklyn">
+            Brooklyn
+          </a>
+          <li class="divider"></li>
+          <a class="option active location" data-type="location" data-location="Connecticut">
+            Connecticut
+          </a>
+          <li class="divider"></li>
+          <a class="option active location" data-type="location" data-location="New Jersey">
+            New Jersey
+          </a>
+          <li class="divider"></li>
+          <li><a href="#" class="select selectall location waves-effect waves-teal">Select all</a></li><li><a href="#" class="select deselectall location waves-effect waves-teal">Deselect all</a></li>
+        </ul>
+        <!-- Dropdown 3 -->
+        <ul id="dropdown3" class="dropdown-content">
+          <a class="option active date" data-type="session" data-session="1">
+            Jun 18 - 29
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="2">
+            Jun 25 - Jul 6
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="3">
+            Jul 9 - 20
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="4">
+            Jul 16 - 27
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="5">
+            Jul 23 - Aug 3
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="6">
+            Jul 30 - Aug 10
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="7">
+            Aug 6 - 17
+          </a>
+          <li class="divider"></li>
+          <a class="option active date" data-type="session" data-session="8">
+            Aug 13 - 24
+          </a>
+          <li class="divider"></li>
+          <li><a href="#" class="select selectall date waves-effect waves-teal">Select all</a> </li><li><a href="#" class="select deselectall date waves-effect waves-teal">Deselect all</a></li>
+        </ul>
+        <!-- Dropdown 4 -->
+        <ul id="dropdown4" class="dropdown-content">
+          <a class="option active age" data-type="age" data-age="18">
+            Age 13-18
+          </a>
+          <li class="divider"></li>
+          <a class="option active age" data-type="age" data-age="14">
+            Age 11-14
+          </a>
+          <li class="divider"></li>
+          <li><a href="#" class="select selectall age waves-effect waves-teal">Select all</a></li><li> <a href="#" class="select deselectall age waves-effect waves-teal">Deselect all</a></li>
+        </ul>
+
+        <nav class="nav-extended white" id="menuBar">
+          <div class="nav-wrapper">
+            <ul class="right">
+              <li><a class="dropdown-button grey-text text-darken-2" href="#!" data-activates="dropdown1">Filter by Course<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><a class="dropdown-button grey-text text-darken-2" href="#!" data-activates="dropdown2">Filter by Location<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><a class="dropdown-button grey-text text-darken-2" href="#!" data-activates="dropdown3">Filter by Date<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><a class="dropdown-button grey-text text-darken-2" href="#!" data-activates="dropdown4">Filter by Age<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li class="hide-on-med-and-down"><a class="btn grey white-text" onClick="resetAll()">reset</a></li>
+            </ul>
+          </div>
+        </nav>
+      <div class="">
+        <div class="cardBody">
+          <div class="row">
+            <div class="hidden" id="whoops">
+              <h1 style="color: #ddd;">No courses match your current selection.</h1><a class="btn grey white-text" onClick="resetAll()">reset?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <script type="text/javascript" src="populate-courses2.js"></script>
+      <script type="text/javascript" src="coursefilter2.js"></script>
+      <script type="text/javascript">
+        $( document ).ready(function(){
+          $(".dropdown-button").dropdown({ hover: false });
+          $('.dropdown-button + .dropdown-content').on('click', e => {
+            if (e.target.classList.contains("option")) {
+              e.target.classList.toggle("active")
+              e.target.classList.toggle("strikethrough")
+              remakeList()
+            } else if (e.target.classList.contains("select")) {
+              const options = {
+                "location" : document.querySelectorAll(".option.location"),
+                "date" : document.querySelectorAll(".option.date"),
+                "content" : document.querySelectorAll(".option.content"),
+                "age" : document.querySelectorAll(".option.age")
+              }
+              console.log(options)
+              console.log(e.target.classList)
+              let type = e.target.classList[2]
+              let toggle = e.target.classList[1]
+              if (toggle == "deselectall") {
+                options[type].forEach( item => {
+                  item.classList.remove("active")
+                  item.classList.add("strikethrough")
+                })
+              } else if (toggle == "selectall") {
+                options[type].forEach( item => {
+                  item.classList.add("active")
+                  item.classList.remove("strikethrough")
+                })
+              }
+              remakeList()
+            }
+            e.stopPropagation();
+          });
+          $(".button-collapse").sideNav();
+        })
+      </script>
+    </body>
+  </html>
