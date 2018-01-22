@@ -6,7 +6,188 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <link rel="stylesheet" href="menu2.css">
+      <style media="screen">
+        @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+        .hidden {
+          display: none;
+        }
+
+        .strikethrough {
+          color: #777;
+        }
+
+        li .option.active {
+          color: #009688;
+        }
+
+        .dropdown-content {
+          margin-top: 64px;
+        }
+
+        .dropdown-content a {
+          margin-left: 20px;
+        }
+
+        .dropdown-content a.select {
+          margin-left: 0px;
+          padding-left: 30px;
+          text-transform: uppercase;
+        }
+
+        .dropdown-content a:hover {
+          background-color: rgba(0,0,0,0);
+        }
+
+        .dropdown-content a:active {
+          background-color: rgba(0,0,0,0);
+        }
+
+        .dropdown-button {
+          padding-left: 28px;
+          padding-right: 28px;
+          height: 64px;
+        }
+
+        /* #menuBar {
+          position: fixed;
+          z-index: 1;
+          width: 100%;
+        } */
+
+        .nav-wrapper {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        div.collapsible-body {
+          background-color: white;
+        }
+
+        /* .cardBody {
+          position: relative;
+          top: 74px;
+          z-index: 0;
+          transition: 0.2s;
+        } */
+
+        .card-image.ruby {
+          background-color: #D53964;
+        }
+
+        .card-image.swift {
+          background-color: #EC6238;
+        }
+
+        .card-image.javascript {
+          background-color: #3F54AF;
+        }
+
+        .card .card-image {
+          display: flex;
+          flex-direction: column;
+        }
+        .card-image img {
+          flex: 0 0 70px;
+        }
+        .card-image div {
+          flex: 1 1 auto;
+        }
+
+        h6.dates {
+
+        }
+
+        p.ugly {
+          font-family: "Oswald";
+          font-size: 1.3rem;
+          padding-bottom: 10px;
+        }
+
+        .option {
+            position: relative;
+            padding-left: 35px;
+            padding-right: 23px;
+            cursor: pointer;
+            display: inline-block;
+            height: 25px;
+            line-height: 25px;
+            font-size: 1rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .option.active:before {
+            top: 0;
+            left: 1px;
+            width: 8px;
+            height: 13px;
+            border-top: 2px solid transparent;
+            border-left: 2px solid transparent;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            -webkit-transform: rotateZ(37deg);
+            transform: rotateZ(37deg);
+            -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+            z-index: 2;
+        }
+
+        .option:before, .option:after {
+            content: '';
+            left: 0;
+            position: absolute;
+            -webkit-transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+            transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+            z-index: 1;
+        }
+
+        .option.active:before {
+            top: -4px;
+            left: -5px;
+            width: 12px;
+            height: 22px;
+            border-top: 2px solid transparent;
+            border-left: 2px solid transparent;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            -webkit-transform: rotate(40deg);
+            transform: rotate(40deg);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+
+        .option:before, .option.strikethrough:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 18px;
+            height: 18px;
+            z-index: 0;
+            border: 2px solid #5a5a5a;
+            border-radius: 1px;
+            margin-top: 2px;
+            -webkit-transition: .2s;
+            transition: .2s;
+        }
+
+        .option.active:after {
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #26a69a;
+            background-color: #26a69a;
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+      </style>
     </head>
     <body>
         <!-- Dropdown1 -->
@@ -127,8 +308,201 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
       <!-- Compiled and minified JavaScript -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-      <script type="text/javascript" src="populate-courses2.js"></script>
-      <script type="text/javascript" src="coursefilter2.js"></script>
+      <script type="text/javascript">
+        console.log("script running")
+
+        const wrapper = document.querySelector('.cardBody .row')
+        console.log(wrapper)
+
+        var preferences = {
+          'location': [],
+          'session': [],
+          'course': []
+        }
+        var courses = []
+
+        fetch("https://raw.githubusercontent.com/jolson615/JSCalendar/master/schedule.json")
+          .then(r => r.json())
+          .then(data => {
+            populatePage(data)
+            courses = data
+          }).catch(e => console.log("Error"))
+
+        function populatePage(courses) {
+          courses.forEach(course => {
+            addCard(course)
+          })
+        }
+
+        function addCard(course) {
+          let imagesrc = getImage(course["Class Code"])
+          let description = getDescription(course["Class Code"])
+          let shortDescription = getShortDescription(course["Class Code"])
+          if (course["Area"] == "Queens") {
+            console.log("Queens not yet ready to run")
+          } else {
+            wrapper.innerHTML += `
+                <div class='col s12 m6 l4 coursecard ${course["Class Code"]}' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}' data-age='${course["Max Age"]}'>
+                  <div class="card sticky-action medium hoverable">
+                    <div class='${course["Class Code"]} card-image' style="height: 50%; overflow: hidden">
+                      <div></div>
+                      <img class="activator" src='${imagesrc}' style="height: 100px">
+                      <div></div>
+                    </div>
+                    <div class="card-content grey-text" style="height: 40%">
+                      <span class="card-title grey-text text-darken-1">${course["Class"]} <i class="material-icons right activator waves-effect waves-light">more_vert</i></span>
+                      <span class="row">${course["Area"]} @ ${course["Location"]} </span>
+                      <div class="row">
+                        <span class="courseDates">${course["Start Date"]} - ${course["End Date"]}, Ages ${course["Min Age"]}-${course["Max Age"]}</span>
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://www.upperlinecode.com/classes" target="_blank">Learn More</a>
+                      <a href='${course["Link"]}' target="_blank">Register</a>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">${course["Class"]}<i class="material-icons right">close</i></span>
+                      <p class="">${description}</p>
+
+                    </div>
+                  </div>
+                </div>
+            `
+          }
+        }
+
+        function getImage(courseName) {
+          if (courseName == "ruby") {
+            return("https://s3.amazonaws.com/upperline/schedule/icon-ruby-white.svg")
+          } else if (courseName == "swift") {
+            return("https://s3.amazonaws.com/upperline/schedule/icon-mobile-white.svg")
+          } else if (courseName == "javascript") {
+            return("https://s3.amazonaws.com/upperline/schedule/icon-vr-white.svg")
+          }
+        }
+
+        function getDescription(courseName) {
+          if (courseName == "ruby") {
+            return("Back-end languages like Ruby are used to write algorithms that power websites like Airbnb. By the end of this course, students will use core Ruby, HTML, and CSS to build a functional web app.")
+          } else if (courseName == "swift") {
+            return("It takes months to get an app on the AppStore, but in these two weeks, students build at least 5 basic apps using Swift frameworks and try the apps on their own iPhones.")
+          } else if (courseName == "javascript") {
+            return("JavaScript brings the web to life: animate webpages, interact with other sites, and create art, games, and virtual realities. In this course, students will build at least two JavaScript-powered web apps.")
+          }
+        }
+
+        function getShortDescription(courseName) {
+          if (courseName == "ruby") {
+            return("Master full-stack programming with Ruby")
+          } else if (courseName == "swift") {
+            return("Build iPhone apps with Xcode and Swift")
+          } else if (courseName == "javascript") {
+            return("Engineering meets design with JavaScript")
+          }
+        }
+
+      </script>
+      <script type="text/javascript">
+        window.addEventListener('click', e => {
+          if (e.target.classList.contains("option")) {
+            e.target.classList.toggle("active")
+            e.target.classList.toggle("strikethrough")
+            remakeList()
+          } else if (e.target.classList.contains("select")) {
+            const options = {
+              "location" : document.querySelectorAll(".option.location"),
+              "date" : document.querySelectorAll(".option.date"),
+              "content" : document.querySelectorAll(".option.content"),
+              "age" : document.querySelectorAll(".option.age")
+            }
+            console.log(options)
+            console.log(e.target.classList)
+            let type = e.target.classList[2]
+            let toggle = e.target.classList[1]
+            if (toggle == "deselectall") {
+              options[type].forEach( item => {
+                item.classList.remove("active")
+                item.classList.add("strikethrough")
+              })
+            } else if (toggle == "selectall") {
+              options[type].forEach( item => {
+                item.classList.add("active")
+                item.classList.remove("strikethrough")
+              })
+            }
+            remakeList()
+          }
+        })
+
+        // function resizeWrapper() {
+        //   const body = document.querySelector(".cardBody")
+        //   const menu = document.querySelector("#menuBar")
+        //   const newOffset = menu.offsetHeight + 10
+        //   body.style.top = `${newOffset}px`;
+        // }
+        //
+        // document.addEventListener("mousemove", e => {
+        //   resizeWrapper()
+        // })
+
+        function remakeList() {
+          const rows = document.querySelectorAll(".coursecard")
+          const whoopsText = document.querySelector('#whoops')
+          // console.log(rows)
+          updatePreferences()
+          var counter = 0
+          rows.forEach(row => {
+            // console.log(row)
+            console.log(preferences.age)
+            console.log(row.dataset)
+            console.log(row.dataset.age)
+            // console.log(preferences.location)
+            console.log(preferences.age.includes(row.dataset.age))
+            if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session) && preferences.age.includes(row.dataset.age)) {
+              row.classList.remove("hidden")
+              counter += 1
+            } else {
+              row.classList.add("hidden")
+            }
+          })
+          console.log(counter)
+          if (counter == 0) {
+            console.log("triggered")
+            whoopsText.classList.remove("hidden")
+          } else {
+            whoopsText.classList.add("hidden")
+          }
+        }
+
+        function resetAll() {
+          const whoopsText = document.querySelector('#whoops')
+          whoopsText.classList.add("hidden")
+          const options = document.querySelectorAll(".option")
+          options.forEach(option => {
+            option.classList.add("active")
+            option.classList.remove("strikethrough")
+          })
+          remakeList()
+        }
+
+        function updatePreferences() {
+          preferences = {
+            'location': [],
+            'session': [],
+            'course': [],
+            'age': []
+          }
+          const options = document.querySelectorAll(".option")
+          // console.log(options)
+          options.forEach(chosenOption => {
+            if (!chosenOption.classList.contains("strikethrough")) {
+              preferences[chosenOption.dataset.type].push(chosenOption.dataset[chosenOption.dataset.type])
+            }
+          })
+
+        }
+
+      </script>
       <script type="text/javascript">
         $( document ).ready(function(){
           $(".dropdown-button").dropdown({ hover: false });
