@@ -33,12 +33,12 @@ function addCard(course) {
     wrapper.innerHTML += `
         <div class='col s12 m6 l4 coursecard ${course["Class Code"]}' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}' data-age='${course["Max Age"]}'>
           <div class="card sticky-action medium hoverable">
-            <div class='${course["Class Code"]} card-image' style="height: 50%; overflow: hidden">
+            <div class='${course["Class Code"]} card-image' style="height: 45%; overflow: hidden">
               <div></div>
               <img class="activator" src='${imagesrc}' style="height: 100px">
               <div></div>
             </div>
-            <div class="card-content grey-text" style="height: 40%">
+            <div class="card-content grey-text" style="height: 45%">
               <span class="card-title grey-text text-darken-1">${course["Class"]} <i class="material-icons right activator waves-effect waves-light">more_vert</i></span>
               <span class="row">${course["Area"]} @ ${course["Location"]} </span>
               <div class="row">
