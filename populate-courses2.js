@@ -27,8 +27,8 @@ function addCard(course) {
   let imagesrc = getImage(course["Class Code"])
   let description = getDescription(course["Class Code"])
   let shortDescription = getShortDescription(course["Class Code"])
-  if (course["Area"] == "Queens") {
-    console.log("Queens not yet ready to run")
+  if (course["Area"] == "N/A") {
+    console.log("Course not yet ready")
   } else {
     wrapper.innerHTML += `
         <div class='col s12 m6 l4 coursecard ${course["Class Code"]}' data-session='${course["Session"]}' data-location='${course["Area"]}' data-course='${course["Class"]}' data-age='${course["Max Age"]}'>
