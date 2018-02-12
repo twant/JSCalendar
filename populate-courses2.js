@@ -24,6 +24,8 @@ function populatePage(courses) {
 }
 
 function addCard(course) {
+  let start = course["Start Date"].slice(6).replace("-","/")
+  let end = course["End Date"].slice(6).replace("-","/")
   let imagesrc = getImage(course["Class Code"])
   let description = getDescription(course["Class Code"])
   let shortDescription = getShortDescription(course["Class Code"])
@@ -42,7 +44,7 @@ function addCard(course) {
               <span class="card-title grey-text text-darken-1">${course["Class"]} <i class="material-icons right activator waves-effect waves-light">more_vert</i></span>
               <span class="row">${course["Area"]} @ ${course["Location"]} </span>
               <div class="row">
-                <span class="courseDates">${course["Start Date"]} - ${course["End Date"]}, Ages ${course["Min Age"]}-${course["Max Age"]}</span>
+                <span class="courseDates">${start} - ${end}, Ages ${course["Min Age"]}-${course["Max Age"]}</span>
               </div>
             </div>
             <div class="card-action">
