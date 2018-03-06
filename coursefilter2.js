@@ -48,11 +48,14 @@ function remakeList() {
   var counter = 0
   rows.forEach(row => {
     // console.log(row)
-    console.log(preferences.age)
-    console.log(row.dataset)
-    console.log(row.dataset.age)
+    // console.log(preferences.age)
+    // console.log(row.dataset)
+    // console.log(row.dataset.location)
     // console.log(preferences.location)
-    console.log(preferences.age.includes(row.dataset.age))
+    // console.log(preferences.location.includes(row.dataset.location))
+    // console.log(preferences.course.includes(row.dataset.course))
+    // console.log(preferences.session.includes(row.dataset.session))
+    // console.log(preferences.age.includes(row.dataset.age))
     if (preferences.location.includes(row.dataset.location) && preferences.course.includes(row.dataset.course) && preferences.session.includes(row.dataset.session) && preferences.age.includes(row.dataset.age)) {
       row.classList.remove("hidden")
       counter += 1
