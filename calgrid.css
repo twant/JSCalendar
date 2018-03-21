@@ -6,7 +6,7 @@
 }
 
 div {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #wrapperGrid {
@@ -91,8 +91,10 @@ div {
 }
 
 .course {
-  grid-column: span 2;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .course > * {
@@ -108,32 +110,45 @@ div {
   font-weight: 100;
 }
 
+#wrapperGrid > .sitebox {
+  grid-column: s1 / end;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: [s1] 1fr [s2] 1fr [ends2] 1fr [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [end];
+  padding: 0;
+  grid-auto-flow: dense;
+}
+
+.double {
+  grid-row: span 2;
+}
+
 .s1 {
-  grid-column-start: s1 / s3;
+  grid-column: s1 / ends2;
 }
 
 .s2 {
-  grid-column-start: s2 / s4;
+  grid-column: s2 / s4;
 }
 
 .s3 {
-  grid-column-start: s3 / s5;
+  grid-column: s3 / s5;
 }
 
 .s4 {
-  grid-column-start: s4 / s6;
+  grid-column: s4 / s6;
 }
 
 .s5 {
-  grid-column-start: s5 / s7;
+  grid-column: s5 / s7;
 }
 
 .s6 {
-  grid-column-start: s6 / s8;
+  grid-column: s6 / s8;
 }
 
 .s7 {
-  grid-column-start: s7 / s9;
+  grid-column: s7 / s9;
 }
 
 .s8 {
@@ -141,5 +156,5 @@ div {
 }
 
 .s9 {
-  grid-column-start: s9 / end;
+  grid-column: s9 / end;
 }

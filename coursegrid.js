@@ -24,14 +24,9 @@ function addCell(course) {
   let end = course["End Date"].slice(6).replace("-","/")
   let classname = course["Class Code"]
   let session = course["Session"]
-  console.log( `
-  <div class="course ${classname} s${session}">
-    <h3 class="coursename">${classname}</h3>
-    <h4 class="coursedate">${start} - ${end}</h4>
-  </div>
-  `)
+  let site = course["Site"]
   wrapper.innerHTML += `
-  <div class="course ${classname} s${session}">
+  <div class="course ${classname} s${session} ${site}">
     <h3 class="coursename">${classname}</h3>
     <h4 class="coursedate">${start} - ${end}</h4>
   </div>
