@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      div {
+        background-color: rgba(0,0,0,0.2);
+        color: white;
+        font-family: "Lato";
+      }
+
+      .child * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .coursedate {
+        font-weight: 100;
+      }
+
+      .coursename {
+        font-weight: 500;
+      }
+
+      .parent {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(10, 100px);
+        grid-gap: 10px;
+      }
+
+      .child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .javascript {
+        background-color: #58A59B;
+      }
+
+      .ios {
+        background-color: #C6DCB0;
+      }
+
+      .ruby {
+        background-color: #80B79F;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child javascript">
+        <h3 class="coursename">JAVASCRIPT</h3>
+        <h4 class="coursedate">6/8 - 6/29</h4>
+      </div>
+      <div class="child ruby"></div>
+      <div class="child ios"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+      <div class="child"></div>
+    </div>
+  </body>
+</html>
