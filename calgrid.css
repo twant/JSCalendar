@@ -159,3 +159,7 @@ div {
 .s9 {
   grid-column: s9 / s10;
 }
+
+.agegroup {
+  font-style: italic;
+}
