@@ -58,6 +58,10 @@ div {
   margin: 2px;
 }
 
+.sitename {
+  font-weight: 100;
+}
+
 #manh {
   grid-row: span 5;
 }
