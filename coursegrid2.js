@@ -28,6 +28,10 @@ function addCell(course) {
   let classname = course["Class Code"]
   let session = course["Session"]
   let site = course["Site"]
+  let agegroup = ""
+  if (course["Min Age"] == "11") {
+    agegroup = `<h6 class="agegroup">Middle School</h6>`
+  }
   siteboxes.forEach(sitebox => {
     console.log(sitebox.dataset.site)
     console.log(site)
@@ -37,6 +41,7 @@ function addCell(course) {
         <div class="course ${classname} s${session} ${site}">
           <h3 class="coursename">${classname}</h3>
           <h4 class="coursedate">${start} - ${end}</h4>
+          ${agegroup}
         </div>
       `
     }

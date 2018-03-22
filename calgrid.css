@@ -11,8 +11,8 @@ div {
 
 #wrapperGrid {
   display: grid;
-  grid-template-columns: 1fr 2fr [s1] 1fr [s2] 1fr [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [s10] 1fr [end];
-  grid-template-rows: 50px [uws] 100px 100px [ues] 100px 100px [fidi] 100px [redhook] 100px [dumbo] 100px [kew] 100px [livingston] minmax(100px,auto) [jerseycity] 100px [greenwich] 100px [stmonica] minmax(100px,auto);
+  grid-template-columns: 1fr 2fr [s1] 1fr [s2] 1fr [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [s10] 1fr [stop];
+  grid-template-rows: 50px [uws] 100px 100px [ues] 100px 100px [fidi] 100px [redhook] 100px [dumbo] 100px [kew] 100px [livingston] 100px [jerseycity] 100px [greenwich] 100px 100px [stmonica] 100px [vstop];
   grid-gap: 10px;
   grid-auto-flow: dense;
 }
@@ -92,6 +92,7 @@ div {
 
 .course {
   padding: 20px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,10 +112,10 @@ div {
 }
 
 #wrapperGrid > .sitebox {
-  grid-column: s1 / end;
+  grid-column: s1 / stop;
   display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: [s1] 1fr [s2] 1fr [ends2] 1fr [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [end];
+  grid-gap: 10px;
+  grid-template-columns: [s1] 1fr [s2] 1fr [stops2] 1fr [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [stop];
   padding: 0;
   grid-auto-flow: dense;
 }
@@ -124,7 +125,7 @@ div {
 }
 
 .s1 {
-  grid-column: s1 / ends2;
+  grid-column: s1 / stops2;
 }
 
 .s2 {
@@ -156,5 +157,5 @@ div {
 }
 
 .s9 {
-  grid-column: s9 / end;
+  grid-column: s9 / s10;
 }
