@@ -177,3 +177,7 @@ p.ugly {
     border-radius: 2px;
     z-index: 0;
 }
+
+.cost {
+  float: right;
+}
