@@ -1,15 +1,12 @@
 /* @import url('https://fonts.googleapis.com/css?family=Lato:100,400,700'); */
 
-* {
+div {
   font-family: lato, sans-serif;
   color: white;
 }
 
-div {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
 #wrapperGrid {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr [s1] 1fr [s2] 1fr [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [s10] 1fr [stop];
   grid-template-rows: 50px [uws] 100px 100px [ues] 100px 100px [fidi] 100px [redhook] 100px [dumbo] 100px [kew] 100px [livingston] 100px [jerseycity] 100px [greenwich] 100px 100px [stmonica] 100px [vstop];
@@ -112,6 +109,7 @@ div {
 }
 
 #wrapperGrid > .sitebox {
+  background-color: rgba(0, 0, 0, 0.2);
   grid-column: s1 / stop;
   display: grid;
   grid-gap: 10px;
