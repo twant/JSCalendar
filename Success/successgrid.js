@@ -38,7 +38,7 @@ function addCell(course) {
     console.log(sitebox.dataset.site)
     console.log(site)
     console.log(sitebox.dataset.site == site)
-    if (sitebox.dataset.site == site) {
+    if (((sitebox.dataset.site == site) && (level == "high")) && (classname != "swift")) {
       sitebox.innerHTML += `
         <div class="course ${classname} s${session} ${site} ${level}">
           <h3 class="coursename">${classname}</h3>

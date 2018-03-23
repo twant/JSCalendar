@@ -1,0 +1,166 @@
+/* @import url('https://fonts.googleapis.com/css?family=Lato:100,400,700'); */
+
+div {
+  font-family: lato, sans-serif;
+  color: white;
+}
+
+#wrapperGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr [s1] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [s10] 1fr [stop];
+  grid-template-rows: 50px [ues] 100px [fidi] 100px [redhook] 100px [kew] 100px [vstop];
+  grid-gap: 10px;
+  grid-auto-flow: dense;
+}
+
+#wrapperGrid > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+#wrapperGrid > * > * {
+  text-align: center;
+}
+
+.datelabel {
+  grid-column: span 2;
+}
+
+.date {
+  grid-row-start: 1;
+  background-color: #666;
+}
+
+.location {
+  grid-column-start: 1;
+  writing-mode: vertical-lr;
+}
+
+.location > h4 {
+  text-orientation: sideways;
+  font-size: 1.4rem;
+  transform: rotate(180deg);
+  margin: 30px auto;
+}
+
+.site {
+  grid-column-start: 2;
+  background-color: #888;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+
+.site > * {
+  margin: 2px;
+}
+
+.sitename {
+  font-weight: 100;
+}
+
+#manh {
+  grid-row: span 2;
+}
+
+
+.location:nth-child(3n+2) {
+  background-color: #58A59B;
+}
+.location:nth-child(3n+3) {
+  background-color: #C6DCB0;
+}
+.location:nth-child(3n+1) {
+  background-color: #80B79F;
+}
+
+.javascript {
+  background-color: #58A59B;
+}
+
+.swift {
+  background-color: #C6DCB0;
+}
+
+.ruby {
+  background-color: #80B79F;
+}
+
+.course {
+  padding: 20px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.course > * {
+  margin: 0;
+}
+
+.coursename {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.coursedate {
+  font-weight: 100;
+}
+
+#wrapperGrid > .sitebox {
+  background-color: rgba(0, 0, 0, 0.1);
+  grid-column: s1 / stop;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: [s3] 1fr [s4] 1fr [s5] 1fr [s6] 1fr [s7] 1fr [s8] 1fr [s9] 1fr [stop];
+  padding: 0;
+  grid-auto-flow: dense;
+}
+
+.double {
+  grid-row: span 2;
+}
+
+.s1 {
+  visibility: hidden;
+  display: none;
+}
+
+.s2 {
+  grid-column: s2 / s4;
+}
+
+.s3 {
+  grid-column: s3 / s5;
+}
+
+.s4 {
+  grid-column: s4 / s6;
+}
+
+.s5 {
+  grid-column: s5 / s7;
+}
+
+.s6 {
+  grid-column: s6 / s8;
+}
+
+.s7 {
+  grid-column: s7 / s9;
+}
+
+.s8 {
+  grid-column: s8 / s10;
+}
+
+.s9 {
+  grid-column: s9 / s10;
+}
+
+.agegroup {
+  font-style: italic;
+}

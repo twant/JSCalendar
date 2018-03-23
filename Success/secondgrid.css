@@ -1,0 +1,44 @@
+#bannerlogo {
+  margin: 20px 15% 0px;
+  width: 70%;
+}
+
+#successlogo {
+  font-family: "PT Sans";
+  color: #666;
+  text-align: center;
+  font-size: 3rem;
+  line-height: 0;
+}
+
+#description {
+  font-family: "PT Sans";
+  color: #888;
+  text-align: center;
+  font-size: 2rem;
+}
+
+#classgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+}
+
+.classheader {
+  padding: 0px 20px;
+}
+
+.indicators {
+  padding: 20px 30px 20px 10px;
+}
+
+.indicatorlist {
+  color: #666;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+.indicatorlist > li {
+  margin-bottom: 24px
+}
