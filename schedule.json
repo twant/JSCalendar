@@ -107,21 +107,6 @@
  {
    "Location": "LMHQ",
    "Area": "Financial District",
-   "Class": "Web Development with Ruby",
-   "Class Code": "ruby",
-   "Site": "fidi",
-   "Start Date": "2018-06-18",
-   "End Date": "2018-06-29",
-   "Session": 1,
-   "Link": "https://upperlinecode.campbrainregistration.com",
-   "Min Age": 13,
-   "Max Age": 18,
-   "Current Available spots": 20,
-   "Last Updated": "2017-12-27"
- },
- {
-   "Location": "LMHQ",
-   "Area": "Financial District",
    "Class": "iOS Development with Swift",
    "Class Code": "swift",
    "Site": "fidi",
