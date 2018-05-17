@@ -9,7 +9,7 @@ div {
   width: 100%;
   display: grid;
   grid-template-columns: 65px 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 50px [uws] 100px 100px 100px [ues] 100px 100px [fidi] 100px [redhook] 100px [dumbo] 100px [kew] 100px auto [divider] auto [livingston] 100px [jerseycity] 100px [greenwich] 100px 100px [ridgefield] 100px auto [divider2] auto [stmonica] 100px [vstop];
+  grid-template-rows: 50px [uws] 100px 100px 100px [ues] 100px 100px [fidi] 100px [redhook] 100px [dumbo] 100px [kew] 100px auto [divider] auto [livingston] 100px [greenwich] 100px 100px [ridgefield] 100px auto [divider2] auto [stmonica] 100px [vstop];
   grid-gap: 10px;
   grid-auto-flow: dense;
 }
@@ -79,7 +79,7 @@ div {
   grid-row: span 3;
 }
 
-#ues, #greenwich, #nj, #bk, #redhook {
+#ues, #greenwich, #bk, #redhook {
   grid-row: span 2;
 }
 
