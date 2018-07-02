@@ -300,21 +300,6 @@
    "Last Updated": "2018-02-26"
  },
  {
-   "Location": "Ridgefield Academy",
-   "Area": "Connecticut",
-   "Class": "Web Development with Ruby",
-   "Class Code": "ruby",
-   "Site": "ridgefield",
-   "Start Date": "2018-08-13",
-   "End Date": "2018-08-24",
-   "Session": 8,
-   "Link": "https://upperlinecode.campbrainregistration.com",
-   "Min Age": 11,
-   "Max Age": 14,
-   "Current Available spots": 20,
-   "Last Updated": "2018-03-26"
- },
- {
    "Location": "The Dwight School",
    "Area": "Upper West Side",
    "Class": "JavaScript and Virtual Reality",
